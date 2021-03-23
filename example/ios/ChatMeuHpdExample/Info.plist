@@ -37,6 +37,14 @@
 			</dict>
 		</dict>
 	</dict>
+  <key>NSCameraUsageDescription</key>
+  <string>Esse app precisa de acesso a camera para enviar fotos no chat</string>
+  <key>NSMicrophoneUsageDescription</key>
+  <string>Esse app precisa de acesso ao microfone para enviar audio no chat</string>
+  <key>NSPhotoLibraryAddUsageDescription</key>
+  <string>Esse app precisa de acesso a biblioteca de fotos para enviar imagens no chat</string>
+  <key>NSPhotoLibraryUsageDescription</key>
+  <string>Esse app precisa de acesso a biblioteca de fotos para enviar imagens no chat</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string></string>
 	<key>UILaunchStoryboardName</key>

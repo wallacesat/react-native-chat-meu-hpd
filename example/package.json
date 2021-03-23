@@ -9,8 +9,16 @@
     "start": "react-native start"
   },
   "dependencies": {
+    "@react-native-community/cameraroll": "^4.0.4",
+    "@react-native-community/slider": "^3.0.3",
     "react": "16.13.1",
-    "react-native": "0.63.4"
+    "react-native": "0.63.4",
+    "react-native-audio-recorder-player": "^2.6.1",
+    "react-native-camera": "git+https://git@github.com/react-native-community/react-native-camera.git",
+    "react-native-document-picker": "^5.0.2",
+    "react-native-file-viewer": "^2.1.4",
+    "react-native-svg": "^12.1.0",
+    "react-native-video": "^5.1.1"
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",

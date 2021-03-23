@@ -1,27 +1,27 @@
 import * as React from 'react';
 
-import { StyleSheet, View, Text } from 'react-native';
-import ChatMeuHpd from 'react-native-chat-meu-hpd';
+import { StyleSheet, SafeAreaView } from 'react-native';
+// import Contatos from './components/Contatos';
+import Chat from './components/Chat';
+
+import { contatos } from './mocks/contatos';
 
 export default function App() {
-  const [result, setResult] = React.useState<number | undefined>();
-
-  React.useEffect(() => {
-    ChatMeuHpd.multiply(3, 7).then(setResult);
-  }, []);
-
   return (
-    <View style={styles.container}>
-      <Text>Result: {result}</Text>
-    </View>
+    <SafeAreaView style={styles.container}>
+      {/* <Contatos contatos={contatos} onContatoPress={() => {}} /> */}
+      <Chat
+        contato={contatos[1]}
+        currentUser={{ _id: 'sdf', name: 'Wallace' }}
+        handleOnSendMessage={() => {}}
+      />
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
   },
   box: {
     width: 60,
