@@ -53,7 +53,7 @@ export type ChatProps = {
     _id: string | number;
     name: string;
   };
-  handleOnSendMessage: (message: Message, contato: Contato) => void;
+  handleOnSendMessage: (contato: Contato) => void;
   renderThumbImageAudioSlider?: (isLeft: boolean) => ImageURISource;
   onPressBackButton?: () => void;
 };

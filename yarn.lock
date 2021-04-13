@@ -8112,9 +8112,10 @@ react-native-builder-bob@^0.18.1:
   optionalDependencies:
     jetifier "^1.6.6"
 
-"react-native-camera@git+https://git@github.com/react-native-community/react-native-camera.git":
+react-native-camera@^3.43.0:
   version "3.43.0"
-  resolved "git+https://git@github.com/react-native-community/react-native-camera.git#c591e9d4e07fdd973e8c1cf681d2c5e10025aa0f"
+  resolved "https://registry.yarnpkg.com/react-native-camera/-/react-native-camera-3.43.0.tgz#12b8d2fadf008af252abb99c7d4a964bbf4cdbf0"
+  integrity sha512-I+04f5L+7Z6ZwUarw+79VePAB//VxidPVsv1Ec7+uuKv3rAkZ+8OBxtm1487OVrY6V3dMdl7BKByv4BIDUY1pQ==
   dependencies:
     prop-types "^15.6.2"
 

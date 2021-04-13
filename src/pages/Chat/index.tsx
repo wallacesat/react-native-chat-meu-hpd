@@ -1,17 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import 'dayjs/locale/pt-br';
-
-// import {
-//   faCamera,
-//   faChevronLeft,
-//   faFilePdf,
-//   faMicrophone,
-//   faPaperclip,
-//   faPaperPlane,
-//   faPause,
-//   faPlay,
-//   faTimes,
-// } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import Slider from '@react-native-community/slider';
 import guid from 'guid';
@@ -95,7 +83,7 @@ const Chat: React.FC<ChatProps> = ({
           audioDurationTime: contatoMessages.audioDurationTime,
           video: contatoMessages.video,
           videoThumb: contatoMessages.videoThumb,
-          sent: contatoMessages.pending,
+          sent: contatoMessages.sent,
           received: contatoMessages.received,
           pending: contatoMessages.pending,
           createdAt: contatoMessages.createdAt,
@@ -120,17 +108,29 @@ const Chat: React.FC<ChatProps> = ({
     }).start();
   }, [inputIsEmpty]);
 
-  const onSend = React.useCallback((msgs = []) => {
-    setMessages((previousMessages) =>
-      GiftedChat.append(previousMessages, msgs)
-    );
-
+  function prepareDataToSend(msgs: any) {
     const newContato = {
       ...contato,
-      ...{ messages: [...contato.messages, ...msgs] },
+      ...{
+        messages: [
+          ...contato.messages,
+          ...msgs.map((msg: any) => ({
+            ...msg,
+            ...{ pending: true, sent: undefined, received: undefined },
+          })),
+        ],
+      },
     };
-    handleOnSendMessage(msgs, newContato);
-  }, []);
+
+    return newContato;
+  }
+
+  const onSend = React.useCallback(
+    (msgs = []) => {
+      handleOnSendMessage(prepareDataToSend(msgs));
+    },
+    [contato]
+  );
 
   function handleInputChange(text: string) {
     if (!text) {
@@ -170,12 +170,11 @@ const Chat: React.FC<ChatProps> = ({
       user: currentUser,
       createdAt: new Date(),
       pending: true,
+      sent: undefined,
+      received: undefined,
       text: '',
     };
-    setMessages((previousMessages) =>
-      GiftedChat.append(previousMessages, [newMessage])
-    );
-    handleOnSendMessage(newMessage, contato);
+    handleOnSendMessage(prepareDataToSend([newMessage]));
   };
 
   const renderSendeButton = (
@@ -247,12 +246,11 @@ const Chat: React.FC<ChatProps> = ({
         user: currentUser,
         createdAt: new Date(),
         pending: true,
+        sent: undefined,
+        received: undefined,
         text: '',
       };
-      setMessages((previousMessages) =>
-        GiftedChat.append(previousMessages, [newMessage])
-      );
-      handleOnSendMessage(newMessage, contato);
+      handleOnSendMessage(prepareDataToSend([newMessage]));
     } catch (err) {
       //Handling any exception (If any)
       if (DocumentPicker.isCancel(err)) {
@@ -542,12 +540,11 @@ const Chat: React.FC<ChatProps> = ({
         user: currentUser,
         createdAt: new Date(),
         pending: true,
+        sent: undefined,
+        received: undefined,
         text: '',
       };
-      setMessages((previousMessages) =>
-        GiftedChat.append(previousMessages, [newMessage])
-      );
-      handleOnSendMessage(newMessage, contato);
+      handleOnSendMessage(prepareDataToSend([newMessage]));
 
       setTakePhoto(false);
     } else {
@@ -557,12 +554,11 @@ const Chat: React.FC<ChatProps> = ({
         user: currentUser,
         createdAt: new Date(),
         pending: true,
+        sent: undefined,
+        received: undefined,
         text: '',
       };
-      setMessages((previousMessages) =>
-        GiftedChat.append(previousMessages, [newMessage])
-      );
-      handleOnSendMessage(newMessage, contato);
+      handleOnSendMessage(prepareDataToSend([newMessage]));
 
       setTakePhoto(false);
     }
