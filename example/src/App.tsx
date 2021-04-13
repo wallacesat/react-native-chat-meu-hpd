@@ -1,23 +1,17 @@
-import * as React from 'react';
+import 'react-native-gesture-handler';
 
-import { StyleSheet, SafeAreaView } from 'react-native';
-// import Contatos from './components/Contatos';
-import Chat from './components/Chat';
-
-import { contatos } from './mocks/contatos';
-
-export default function App() {
-  return (
-    <SafeAreaView style={styles.container}>
-      {/* <Contatos contatos={contatos} onContatoPress={() => {}} /> */}
-      <Chat
-        contato={contatos[1]}
-        currentUser={{ _id: 'sdf', name: 'Wallace' }}
-        handleOnSendMessage={() => {}}
-      />
-    </SafeAreaView>
+if (__DEV__) {
+  import('../ReactotronConfig').then(() =>
+    console.log('Reactotron Configured')
   );
 }
+
+import * as React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { StyleSheet, SafeAreaView } from 'react-native';
+
+import { ChatProvider } from './contexts/ChatContext';
+import Routes from './routes';
 
 const styles = StyleSheet.create({
   container: {
@@ -29,3 +23,15 @@ const styles = StyleSheet.create({
     marginVertical: 20,
   },
 });
+
+export default function App() {
+  return (
+    <NavigationContainer>
+      <SafeAreaView style={styles.container}>
+        <ChatProvider>
+          <Routes />
+        </ChatProvider>
+      </SafeAreaView>
+    </NavigationContainer>
+  );
+}
